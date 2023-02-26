@@ -40,6 +40,9 @@ const login=(email,password)=>{
                     status:true,
                     statusCode:200,
                     email:customer.email,
+                    phone:customer.phone,
+                    username:customer.username,
+                    id:customer.id,
                     message:"Login successful"
                 }
             }
@@ -54,16 +57,21 @@ const login=(email,password)=>{
     )
 }
 
-const addBooking=(email,add)=>{
+const addBooking=(email,trainNumber,date,start,end,from,to,pass,totalRs)=>{
     return db.Customer.findOne({email}).then(
         customer=>{
             if(customer){
                 customer.addb.push({
-                    email:"email",
-                    e:email,
-                    add,
-                    add:"add"
-                })
+                    trainNumber,
+                    date,
+                    start,
+                    end,
+                    from,
+                    to,
+                    pass,
+                    totalRs,
+                    email
+                });
                 customer.save();
                 return{
                     status:true,
@@ -109,6 +117,57 @@ const trainTime=(from,to)=>{
 }
 
 
+// const saveChanges=(email,phone,username,ID)=>{
+//     return db.Customer.updateOne({ID}).then(
+//         customer=>{
+//             if(customer){
+//                 const newCustomer=new db.Customer({
+//                     username:username,
+//                     email:email,
+//                     phone:phone
+//                 })
+//                 newCustomer.save();
+//                 return{
+//                     status:true,
+//                     statusCode:200,
+//                     message:"updation successful"
+//                 }
+//             }
+//             else{
+//                 return{
+//                     status:false,
+//                     statusCode:401,
+//                     message:"Invalid credentials"
+//                 }
+//             }
+//         }
+//     )
+// }
+
+const getTicket=(email)=>{
+    return db.Customer.findOne({email}).then(
+        customer=>{
+            if(customer){
+                return{
+                    status:true,
+                    statusCode:200,
+                    message:"access successful",
+                    getTicket:customer.addb
+                }
+            }
+            else{
+                return{
+                  status:false,
+                  statusCode:401,
+                  message:"User not found"
+                }
+              }
+        }
+    )
+}
+
+
+
 
 
 
@@ -123,5 +182,7 @@ module.exports={
     register,
     login,
     trainTime,
-    addBooking
+    addBooking,
+    // saveChanges,
+    getTicket
 }

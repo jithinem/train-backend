@@ -42,13 +42,12 @@ app.post('/login',(req,res)=>{
     )
 })
 
-app.put('/booking',(req,res)=>{
-    dataService.addBooking(req.body.email,req.body.add).then(
+app.patch('/booking',(req,res)=>{
+    dataService.addBooking(req.body.email,req.body.trainNumber,req.body.date,req.body.start,req.body.end,req.body.from,req.body.to,req.body.pass,req.body.totalRs).then(
         result=>{
             res.status(result.statusCode).json(result);
         }
     )
-    console.log(req.body.add)
 })
 
 //getting train data
@@ -61,6 +60,26 @@ app.post('/trainTime',(req,res)=>{
     console.log(req.body.from);
     console.log(req.body.to);    
 
+})
+
+//updating customer data
+// app.put('/saveChanges',(req,res)=>{
+//     dataService.addBooking(req.body.email,req.body.username,req.body.phone,req.body.ID).then(
+//         result=>{
+//             res.status(result.statusCode).json(result);
+//         }
+//     )
+//     console.log(req.body.add)
+// })
+
+
+app.post('/getTicket',(req,res)=>{
+    dataService.getTicket(req.body.email).then(
+        result=>{
+            res.status(result.statusCode).json(result);
+        }
+    )
+    console.log(req.body.email);
 })
 
 
