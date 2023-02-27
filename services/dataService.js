@@ -101,7 +101,7 @@ const trainTime=(from,to)=>{
                 return{
                     status:true,
                     statusCode:200,
-                    message:"access successful",
+                    // message:"access successful",
                     time:time.data
                 }
             }
@@ -151,7 +151,7 @@ const getTicket=(email)=>{
                 return{
                     status:true,
                     statusCode:200,
-                    message:"access successful",
+                    // message:"access successful",
                     getTicket:customer.addb
                 }
             }
@@ -165,6 +165,22 @@ const getTicket=(email)=>{
         }
     )
 }
+
+// const deleteTicket=(email,i)=>{
+//     return db.Customer.updateOne({email}).then(
+//         customer=>{
+//             if(customer){
+//                 delete addb[i]
+//                 return{
+//                     status:true,
+//                     statusCode:200,
+//                     message:"Ticket deleted"
+                    
+//                 }
+//             }
+//         }
+//     )
+// }
 
 
 
@@ -184,5 +200,6 @@ module.exports={
     trainTime,
     addBooking,
     // saveChanges,
-    getTicket
+    getTicket,
+    // deleteTicket
 }

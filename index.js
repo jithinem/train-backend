@@ -82,5 +82,13 @@ app.post('/getTicket',(req,res)=>{
     console.log(req.body.email);
 })
 
+// app.post('/deleteTicket',(req,res)=>{
+//     dataService.deleteTicket(req.body.email,req.body.trainNumber).then(
+//         result=>{
+//             res.status(result.statusCode).json(result);
+//         }
+//     )
+// })
+
 
 //..........seperate collection for admin login is needed
